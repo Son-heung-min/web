@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .image-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            margin: 20px;
+            padding: 15px;
+            width: 30%;
+            box-sizing: border-box;
+            text-align: center;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+        }
+
+        .image-description {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .image-card h3 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Dynamic Image Gallery</h1>
+        <p>Explore various images and their details</p>
+    </header>
+
+    <div class="container" id="gallery-container">
+        <!-- Image cards will be dynamically inserted here by JavaScript -->
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Image Gallery. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Dynamic image data array
+        const imageData = [
+            {
+                title: "Lionel Messi",
+                description: "Lionel Messi is an Argentine professional footballer often considered one of the greatest players of all time. He has won numerous Ballon d'Or titles and is known for his exceptional dribbling and playmaking abilities.",
+                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Lionel_Messi_20180626.jpg"
+            },
+            {
+                title: "Cristiano Ronaldo",
+                description: "Cristiano Ronaldo is a professional footballer from Portugal, widely regarded as one of the greatest footballers of all time. He has won multiple Ballon d'Or awards and numerous trophies in his career.",
+                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Cristiano_Ronaldo_2018.jpg/800px-Cristiano_Ronaldo_2018.jpg"
+            },
+            {
+                title: "Neymar",
+                description: "Neymar is a Brazilian professional footballer, known for his skill, creativity, and flair on the ball. He has played for top clubs like Barcelona and Paris Saint-Germain (PSG), and is a key figure for Brazil.",
+                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/13/Neymar_2018.jpg"
+            },
+            {
+                title: "Luis Suárez",
+                description: "Luis Suárez is an Uruguayan professional footballer known for his lethal finishing and controversial moments. He has played for top European clubs such as Barcelona and Atlético Madrid, and is a prolific goal scorer.",
+                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Luis_Suárez_2019.jpg"
+            },
+            {
+                title: "Zlatan Ibrahimović",
+                description: "Zlatan Ibrahimović is a Swedish professional footballer known for his physical presence, technical skill, and arrogance on the field. He has played for several top European clubs including Barcelona, PSG, and Manchester United.",
+                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Zlatan_Ibrahimović_2020.jpg"
+            }
+        ];
+
+        // Function to generate the image cards dynamically
+        function generateGallery() {
+            const container = document.getElementById("gallery-container");
+            
+            // Loop through the imageData array and create HTML for each image card
+            imageData.forEach(item => {
+                const card = document.createElement("div");
+                card.classList.add("image-card");
+
+                const img = document.createElement("img");
+                img.src = item.imageUrl;
+                img.alt = item.title;
+
+                const title = document.createElement("h3");
+                title.textContent = item.title;
+
+                const description = document.createElement("p");
+                description.classList.add("image-description");
+                description.textContent = item.description;
+
+                // Append image, title, and description to the card
+                card.appendChild(img);
+                card.appendChild(title);
+                card.appendChild(description);
+
+                // Append the card to the gallery container
+                container.appendChild(card);
+            });
+        }
+
+        // Call the function to generate the gallery when the page loads
+        window.onload = generateGallery;
+    </script>
+
+</body>
+</html>
